@@ -18,15 +18,6 @@ public class Gauge : MonoBehaviour
         slider.value = val;
     }
 
-    public void GaugeUp()
-    {
-        slider.value += 20;
-    }
-    public void GaugeDown()
-    {
-        slider.value -= 10;
-    }
-
 
     private void Update()
     {

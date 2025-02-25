@@ -9,11 +9,18 @@ public class Move_Open_UI : MonoBehaviour
     public Vector2 targetSize = new Vector2(500, 500); // 목표 크기
     public float animationDuration = 1.0f; // 애니메이션 지속 시간
 
+    public Transform[] Children;
+
     void Start()
     {
         // 창 크기를 시작 크기로 초기화
         panel = gameObject.GetComponent<RectTransform>();
         panel.sizeDelta = startSize;
+
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            Children[i] = transform.GetChild(i);
+        }
     }
 
     public void OpenWindow()
