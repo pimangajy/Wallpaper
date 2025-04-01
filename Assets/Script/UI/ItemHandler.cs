@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,16 +6,16 @@ using UnityEngine.UI;
 
 public class ItemHandler : MonoBehaviour
 {
+    public Image mainIcon;
+
     public Slider exp;
     public Slider interest;
 
-    public string item_Name;
-    public string item_explanation;
-    public Sprite item_Icon;
+    public UI_Event UIEvent;
+    public ItamData itemData;
     public Item_Panel panel;
-    private string item_Title;
 
-
+    public bool isAcquired = false;
     public Text number;
     public int count;
 
@@ -22,20 +23,51 @@ public class ItemHandler : MonoBehaviour
 
     private void Start()
     {
+        if(UIEvent != null)
+        {
+            UIEvent.itemSlotOpen += ItemSlot;
+        }
+
         countKey = gameObject.name;
         Item_Count();
     }
 
-    // 아이템 팝업창에 아이텡 정보를 줌
+    public void ItemSlot(object sender, EventArgs e)
+    {
+        if (!isAcquired)
+        {
+            mainIcon.sprite = itemData.item_Hide_Icon;
+        }
+        else
+        {
+            mainIcon.sprite = itemData.item_Icon;
+        }
+    }
+
+    // 아이템 팝업창에 아이템 정보를 줌
     public void Panel_Set()
     {
-        panel.itam_name.text = item_Name;
-        panel.explanation.text = item_explanation;
-        panel.icon.sprite = item_Icon;
-        count = PlayerPrefs.GetInt(countKey);
-        panel.count.text = count.ToString();
-        panel.btn.onClick.RemoveAllListeners();
-        panel.btn.onClick.AddListener(Item_Use);
+        if (!isAcquired)
+        {
+            mainIcon.sprite = itemData.item_Hide_Icon;
+            panel.icon.sprite = itemData.item_Hide_Icon;
+            panel.itam_name.text = "???";
+            panel.explanation.text = "???";
+            count = 0;
+            panel.count.text = count.ToString();
+            panel.btn.onClick.RemoveAllListeners();
+        }
+        else
+        {
+            mainIcon.sprite = itemData.item_Icon;
+            panel.itam_name.text = itemData.item_Name;
+            panel.explanation.text = itemData.item_explanation;
+            panel.icon.sprite = itemData.item_Icon;
+            count = PlayerPrefs.GetInt(countKey);
+            panel.count.text = count.ToString();
+            panel.btn.onClick.RemoveAllListeners();
+            panel.btn.onClick.AddListener(Item_Use);
+        }
     }
 
     // 플레이어 프리팹에 들어있는 아이템 수를 가져옴
@@ -48,12 +80,19 @@ public class ItemHandler : MonoBehaviour
         }
 
         count = PlayerPrefs.GetInt(countKey);
+
+        // 아이템 사용시 실행되서 카운트가 줄어듬
         panel.count.text = count.ToString();
     }
 
     // 아이템을 얻을때 플레이어 프리팹에있는값을 증가시킴
     public void Item_Plus()
     {
+        if(!isAcquired)
+        {
+            isAcquired = true;
+        }
+
         int itemCount = PlayerPrefs.GetInt(countKey);
         itemCount++;
         PlayerPrefs.SetInt(countKey, itemCount);
@@ -74,10 +113,27 @@ public class ItemHandler : MonoBehaviour
         Debug.Log("아이템 사용");
 
         // 아이템 사용 함수
-        Item_Effect();
+        Item_Effect_Test();
 
         // 아이템 숫자 갱신
         Item_Count();
+    }
+
+    public void Item_Effect_Test()
+    {
+        Debug.Log(gameObject.name);
+
+        if (itemData.expIncrease)
+        {
+            exp.value += itemData.value;
+        }
+        else if (itemData.interestIncrease)
+        {
+            interest.value += itemData.value;
+        }
+        else if (itemData.typeChanged)
+        { return; }
+
     }
 
     // 아이템 사용 효과

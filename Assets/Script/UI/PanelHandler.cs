@@ -17,6 +17,7 @@ public class PanelHandler : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
+        UIManager.Instance.OpenUI(gameObject);
 
         // DOTween의 시퀀스를 생성
         var seq = DOTween.Sequence();
@@ -40,6 +41,7 @@ public class PanelHandler : MonoBehaviour
         seq.Play().OnComplete(() =>
         {
             gameObject.SetActive(false);
+            UIManager.Instance.CloseUI();
         });
     }
 }

@@ -24,11 +24,14 @@ public class Move_UI : MonoBehaviour
     // 코루틴을 실행하기 위한 함수
     public void Open()
     {
+        gameObject.SetActive(true);
         StartCoroutine(Open_Panel());
+        UIManager.Instance.OpenUI(gameObject);
     }
     public void Close()
     {
         StartCoroutine(Close_Panel());
+        UIManager.Instance.CloseUI();
     }
 
     public IEnumerator Open_Panel()
@@ -71,5 +74,6 @@ public class Move_UI : MonoBehaviour
 
         // 정확한 위치로 설정
         rectTransform.anchoredPosition = start_point;
+        gameObject.SetActive(false);
     }
 }

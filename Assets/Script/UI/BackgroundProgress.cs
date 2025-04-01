@@ -21,10 +21,14 @@ public class BackgroundProgress : MonoBehaviour
             float elapsedSeconds = (float)timeElapsed.TotalSeconds;
             exp_Gauge.value += elapsedSeconds * 1.0f;
             exp_Gauge.value = Mathf.Clamp(exp_Gauge.value, exp_Gauge.minValue, exp_Gauge.maxValue);
+            PlayerPrefs.SetFloat("exp", exp_Gauge.value);
 
             // 지난 시간동안 애정도 감소
             Interest_Gauge.value -= elapsedSeconds * (10 / 3600f);
             Interest_Gauge.value = Mathf.Clamp(Interest_Gauge.value, Interest_Gauge.minValue, Interest_Gauge.maxValue);
+            PlayerPrefs.SetFloat("interest", Interest_Gauge.value);
+
+            PlayerPrefs.Save();
         }
     }
 

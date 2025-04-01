@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using NUnit.Framework.Internal;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using System;
 
 public class Click : MonoBehaviour
 {
@@ -18,6 +20,17 @@ public class Click : MonoBehaviour
     private Vector3 touchStartPosition;
     private const float TOUCH_TIME_THRESHOLD = 0.2f; // 터치로 인식할 최대 시간 (초)
 
+
+    [SerializeField]
+    private List<Idle_Anime> idle_Animes = new List<Idle_Anime>();
+
+    public Imoticon_On_Off imoticon_1;
+    public Imoticon_On_Off imoticon_2;
+    public Imoticon_On_Off imoticon_3;
+    public Imoticon_On_Off imoticon_4;
+
+    int touchCount = 0;
+
     void Awake()
     {
         if (mainCamera == null)  // 카메라할당헀는지 확인
@@ -25,6 +38,11 @@ public class Click : MonoBehaviour
             mainCamera = Camera.main;
             Debug.LogWarning("카메라가 할당되지 않아 메인 카메라를 사용합니다. Inspector에서 카메라를 직접 할당하는 것을 권장합니다.");
         }
+    }
+
+    private void Start()
+    {
+
     }
 
     void Update()
@@ -60,6 +78,14 @@ public class Click : MonoBehaviour
                 {
                     isDragging = true;
                     event_Anime.animator.SetBool("Drag", true);
+                    
+                    foreach(Idle_Anime idle in idle_Animes)
+                    {
+                        idle.HeadIdle_On();
+                    }
+
+                    imoticon_4.Imoticon_On();
+
                     Debug.Log("드래그 시작!");
                 }
             }
@@ -78,11 +104,38 @@ public class Click : MonoBehaviour
                 isDragging = false;
                 //idle_Anime.DragEndEvent(viewportPoint);
                 event_Anime.animator.SetBool("Drag", false);
+
+                foreach (Idle_Anime idle in idle_Animes)
+                {
+                    idle.HeadIdle_Off();
+                }
+
+                imoticon_4.Imoticon_Off();
+
                 Debug.Log("드래그 종료!");
+
+                if(Time.time - touchStartTime > 2.0f)
+                {
+                    imoticon_1.Surprise_On_Off(0.5f);
+                }
+
             }
             else if (Time.time - touchStartTime < TOUCH_TIME_THRESHOLD)
             {
                 event_Anime.TouchEvent(viewportPoint);
+
+                imoticon_4.Imoticon_Off();
+
+                if(touchCount > 3)
+                {
+                    imoticon_2.Surprise_On_Off(0.5f);
+                    touchCount = 0;
+                }else
+                {
+                    touchCount++;
+                    imoticon_3.Surprise_On_Off(0.3f);
+                }
+
                 Debug.Log("터치 이벤트 실행!");
             }
         }

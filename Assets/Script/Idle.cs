@@ -4,33 +4,58 @@ using UnityEngine;
 
 public class Idle : MonoBehaviour
 {
-    public Animator animator;
+    [SerializeField]
+    private List<Idle_Anime> idle_Animes = new List<Idle_Anime>();
 
     void Start()
     {
-        StartCoroutine(Shake_H());  // 코루틴 시작
-        StartCoroutine(Shake_R());
+        StartCoroutine(Idle_Hair());  // 코루틴 시작
+        StartCoroutine(Idle_Arm());
+        StartCoroutine(Idle_Leg());
     }
 
-    IEnumerator Shake_H()
+
+    IEnumerator Idle_Hair()
+    {
+        while (true)  // 무한 반복
+        {
+            float waitTime = Random.Range(5.0f, 8.0f);  // 랜덤 시간 생성
+
+            foreach (Idle_Anime anime in idle_Animes)
+            {
+                anime.HairIdle();
+            }
+
+            yield return new WaitForSeconds(waitTime);  // 자신을 다시 실행
+        }
+    }
+    IEnumerator Idle_Arm()
     {
         while (true)  // 무한 반복
         {
             float waitTime = Random.Range(4.0f, 6.0f);  // 랜덤 시간 생성
-            animator.SetLayerWeight(animator.GetLayerIndex("ArmLayer"), 1.0f);  // 레이어의 Weight를 1로 바꿔 애니메이션을 잘 보이게 한다
-            animator.SetTrigger("idle_1");  // 트리거 실행
+
+            foreach (Idle_Anime anime in idle_Animes)
+            {           
+                anime.ArmIdle();
+
+            }
+
             yield return new WaitForSeconds(waitTime);  // 자신을 다시 실행
         }
     }
-
-    IEnumerator Shake_R()
+    IEnumerator Idle_Leg()
     {
-        while (true)
+        while (true)  // 무한 반복
         {
-            float waitTime = Random.Range(2.0f, 5.0f);
-            animator.SetLayerWeight(animator.GetLayerIndex("LegLayer"), 1.0f);
-            animator.SetTrigger("idle_2");
-            yield return new WaitForSeconds(waitTime);
+            float waitTime = Random.Range(8.0f, 10.0f);  // 랜덤 시간 생성
+
+            foreach (Idle_Anime anime in idle_Animes)
+            {
+                anime.LegIdle();
+            }
+
+            yield return new WaitForSeconds(waitTime);  // 자신을 다시 실행
         }
     }
 }
