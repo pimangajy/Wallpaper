@@ -11,5 +11,5 @@ public class Encyclopedia_Panel : MonoBehaviour
     public Text mbti;
     public Text explanation;
     public Text count;
-    public Image image;
+    public Image main_image;
 }

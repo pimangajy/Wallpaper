@@ -2,28 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Encyclopedia_Button : MonoBehaviour
 {
     public Encyclopedia_Panel panel;
-
-    public string character_name;
-    public string age;
-    public string birthday;
-    public string mbti;
-    [TextArea(1, 10)]
-    public string explanation;
-    public int count;
-    public Sprite image;
+    [SerializeField]
+    public CharatorData charatorData;
 
     public void Open()
     {
-        panel.character_name.text = character_name;
-        panel.age.text = age;
-        panel.birthday.text = birthday;
-        panel.mbti.text = mbti;
-        panel.explanation.text = explanation;
-        panel.count.text = count.ToString();
-        panel.image.sprite = image;
+        panel.character_name.text = charatorData.name;
+        panel.age.text = charatorData.age;
+        panel.birthday.text = charatorData.birthday;
+        panel.mbti.text = charatorData.mbti;
+        panel.explanation.text = charatorData.explanation;
+        // panel.count.text = count.ToString();
+        panel.main_image.sprite = charatorData.main_Image;
+
     }
 }

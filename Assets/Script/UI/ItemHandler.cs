@@ -88,14 +88,10 @@ public class ItemHandler : MonoBehaviour
     // 아이템을 얻을때 플레이어 프리팹에있는값을 증가시킴
     public void Item_Plus()
     {
-        if(!isAcquired)
-        {
-            isAcquired = true;
-        }
-
         int itemCount = PlayerPrefs.GetInt(countKey);
         itemCount++;
         PlayerPrefs.SetInt(countKey, itemCount);
+        PlayerPrefs.Save();
     }
 
     // 아이템 count 감소

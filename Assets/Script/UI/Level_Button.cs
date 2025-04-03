@@ -56,6 +56,7 @@ public class Level_Button : MonoBehaviour
         {
             characterType = GetRandomCharacterType(); // 1레벨이면 랜덤 타입 할당
             PlayerPrefs.SetInt("Character_type", (int)characterType);
+            PlayerPrefs.SetInt("level", character_Level);
             PlayerPrefs.Save();
             Debug.Log($"레벨 1이 되어 랜덤 타입 변경: {characterType}");
         }
@@ -63,7 +64,7 @@ public class Level_Button : MonoBehaviour
         {
             PlayerPrefs.SetInt("level", character_Level);
             PlayerPrefs.Save();
-            Debug.Log($"현재 타입: {characterType}, 레벨: {character_Level}");
+            Debug.Log($"레벨업!  현재 타입: {characterType}, 레벨: {character_Level}");
         }
 
         switch (character_Level)
