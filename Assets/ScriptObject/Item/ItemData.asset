@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223027df13ca568498b97b71b3882d58, type: 3}
   m_Name: ItemData
   m_EditorClassIdentifier: 
-  item_Name: "\uC791\uC740 \uCE58\uC988"
-  item_explanation: "1\uC2DC\uAC04\uCE58 \uACBD\uD5D8\uCE58\uB97C \uC5BB\uC2B5\uB2C8\uB2E4"
-  item_Icon: {fileID: -5741337257242877037, guid: 825f24a1568289b49af1c311e4f2d486, type: 3}
-  item_Hide_Icon: {fileID: -2098468077852555452, guid: b668e2f006f393d419b3b81bdf13d852, type: 3}
+  itemName: "1000 \uCE58\uC988"
+  itemExplanation: "\uCE90\uB9AD\uD130\uB4E4\uC774 \uAC00\uC7A5 \uC88B\uC544\uD558\uB294
+    \uC74C\uC2DD\uC774\uB2E4.\n 1\uC2DC\uAC04\uCE58 \uACBD\uD5D8\uCE58\uB97C \uC5BB\uB294\uB2E4."
+  itemIcon: {fileID: -5741337257242877037, guid: 825f24a1568289b49af1c311e4f2d486, type: 3}
+  itemHideIcon: {fileID: -2098468077852555452, guid: b668e2f006f393d419b3b81bdf13d852, type: 3}
   expIncrease: 1
   interestIncrease: 0
   typeChanged: 0

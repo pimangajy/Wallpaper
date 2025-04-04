@@ -151,10 +151,8 @@ public class Level_Button : MonoBehaviour
         if (itemHandler != null)
         {
             itemHandler.Item_Plus();
-            if (!itemHandler.isAcquired)
-            {
-                itemHandler.isAcquired = true;
-            }
+
+            Debug.Log(itemHandler.itemData.itemName);
             Debug.Log((ran+1) + " π¯§ä æ∆¿Ã≈€ ≈âµÊ");
         }
     }

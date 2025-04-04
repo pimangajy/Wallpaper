@@ -8,7 +8,12 @@ public class Encyclopedia_Button : MonoBehaviour
 {
     public Encyclopedia_Panel panel;
     [SerializeField]
-    public CharatorData charatorData;
+    private CharatorData charatorData;
+    [SerializeField]
+    private ItemData itemData;
+
+    public GameObject icon;
+    public GameObject charatorName;
 
     public void Open()
     {

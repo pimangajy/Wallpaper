@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 223027df13ca568498b97b71b3882d58, type: 3}
-  m_Name: ItemData 5
+  m_Name: ItemData 4
   m_EditorClassIdentifier: 
-  item_Name: "\uAD6C\uB3C5\uAD8C 10\uC7A5"
-  item_explanation: "\uC560\uC815\uB3C4 100\uC99D\uAC00"
-  item_Icon: {fileID: 21300000, guid: da7129ed6a246f048a49d8d97de2d2d4, type: 3}
-  item_Hide_Icon: {fileID: 21300000, guid: c1d0e6764d9c5f8458571840fb1d57d3, type: 3}
+  itemName: "\uAD6C\uB3C5\uAD8C 5\uC7A5"
+  itemExplanation: "\uC774\uC81C \uD30C\uC2A4\uD154\uC774\uB2E4.\n\uC560\uC815\uB3C4
+    50 \uC99D\uAC00."
+  itemIcon: {fileID: 21300000, guid: d1b0810a7bee633469a729543f4e6659, type: 3}
+  itemHideIcon: {fileID: 21300000, guid: ea55e0ae186d59d41a0b270559045dd7, type: 3}
   expIncrease: 0
   interestIncrease: 1
   typeChanged: 0
-  value: 100
+  value: 60

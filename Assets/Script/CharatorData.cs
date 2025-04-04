@@ -10,6 +10,5 @@ public class CharatorData : ScriptableObject
     public string mbti;
     [TextArea(5, 10)]
     public string explanation;
-    public Sprite icon_Image;
     public Sprite main_Image;
 }

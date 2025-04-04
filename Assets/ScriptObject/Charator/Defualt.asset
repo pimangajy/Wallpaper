@@ -16,5 +16,4 @@ MonoBehaviour:
   birthday: "5\uC6D4 21\uC77C"
   mbti: ISTP
   explanation: "\uBB34\uC5C7\uC774 \uB098\uC62C\uC9C0 \uBAA8\uB97C \uC54C\uC774\uB2E4"
-  icon_Image: {fileID: 21300000, guid: d0c05b9125ed56349a5385e1a77547b7, type: 3}
-  main_Image: {fileID: 21300000, guid: 1a58749f555f75e48baa41893215b26e, type: 3}
+  main_Image: {fileID: 5754875837779338786, guid: 007e5de3e55f4ab49a9795b27c405968, type: 3}
