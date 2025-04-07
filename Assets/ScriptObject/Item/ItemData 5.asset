@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223027df13ca568498b97b71b3882d58, type: 3}
   m_Name: ItemData 5
   m_EditorClassIdentifier: 
-  itemName: "\uAD6C\uB3C5\uAD8C 5\uC7A5"
+  itemName: "\uAD6C\uB3C5\uAD8C 10\uC7A5"
   itemExplanation: "\uC774\uC81C \uC2A4\uD154\uB77C\uC774\uBE0C\uC5C6\uC774\uB294
     \uBABB\uC0B0\uB2E4.\n\uC560\uC815\uB3C4\uB97C 100 \uC5BB\uB294\uB2E4."
   itemIcon: {fileID: 21300000, guid: d1b0810a7bee633469a729543f4e6659, type: 3}
   itemHideIcon: {fileID: 21300000, guid: ea55e0ae186d59d41a0b270559045dd7, type: 3}
-  expIncrease: 0
-  interestIncrease: 1
-  typeChanged: 0
+  itemType: 1
   value: 100

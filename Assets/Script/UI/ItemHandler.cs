@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class ItemHandler : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ItemHandler : MonoBehaviour
     public Slider interest;
     public UI_Event UIEvent;
     public ItemData itemData;
+    public Text itemName;
     public Item_Panel panel;
     private string countKey;
     private int count;
@@ -29,6 +31,7 @@ public class ItemHandler : MonoBehaviour
     {
         bool discovered = ItemDataManager.Instance.IsItemDiscovered(itemData);
         mainIcon.sprite = discovered ? itemData.itemIcon : itemData.itemHideIcon;
+        itemName.text = discovered ? itemData.itemName : "???";
     }
 
     public void Panel_Set()
@@ -37,7 +40,7 @@ public class ItemHandler : MonoBehaviour
         panel.icon.sprite = discovered ? itemData.itemIcon : itemData.itemHideIcon;
         panel.itam_name.text = discovered ? itemData.itemName : "???";
         panel.explanation.text = discovered ? itemData.itemExplanation : "???";
-        panel.count.text = count.ToString();
+        panel.count.text = discovered ? ItemDataManager.Instance.GetItemCount(itemData).ToString() : "0";
         panel.btn.onClick.RemoveAllListeners();
         if (discovered) panel.btn.onClick.AddListener(Item_Use);
     }
@@ -56,22 +59,21 @@ public class ItemHandler : MonoBehaviour
 
     public void Item_Use()
     {
-        ItemDataManager.Instance.UseItem(itemData);
-
-        if (count <= 0)
-        {
-            Debug.Log("아이템 없음");
-            return;
-        }
-        PlayerPrefs.SetInt(countKey, --count);
-        ApplyItemEffect();
+        ApplyItemEffect(ItemDataManager.Instance.UseItem(itemData));
         LoadItemCount();
+        UIManager.Instance.SlideSaveData(itemData);
     }
 
-    private void ApplyItemEffect()
+    private void ApplyItemEffect(bool use)
     {
-        if (itemData.expIncrease) exp.value += itemData.value;
-        else if (itemData.interestIncrease) interest.value += itemData.value;
+        if(!use)
+            return;
+
+        if (itemData.itemType == ItemData.ItemType.expIncrease) 
+            exp.value += itemData.value;
+        else if (itemData.itemType == ItemData.ItemType.interestIncrease) 
+            interest.value += itemData.value;
+
         Debug.Log($"{itemData.itemName} 사용! 효과 적용 완료");
     }
 }

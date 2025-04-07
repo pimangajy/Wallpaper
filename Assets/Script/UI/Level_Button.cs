@@ -17,15 +17,13 @@ public class Level_Button : MonoBehaviour
     public Gauge gauge;
     public enum Charater_type 
     {
-        yuniNomal,
-        Default
+        Default,
+        yuniNomal
     }
-    [SerializeField]
-    private Charater_type charater_Type = Charater_type.yuniNomal;
+
     [SerializeField]
     private int character_Level = 0;
 
-    public enum CharacterType { A, B, C, Default }
     public Charater_type characterType = Charater_type.Default; // 초기 타입
 
     private void Start()
@@ -62,9 +60,10 @@ public class Level_Button : MonoBehaviour
         }
         else
         {
+            PlayerPrefs.SetInt("Character_type", (int)characterType);
             PlayerPrefs.SetInt("level", character_Level);
             PlayerPrefs.Save();
-            Debug.Log($"레벨업!  현재 타입: {characterType}, 레벨: {character_Level}");
+            Debug.Log($"레벨업!  현재 타입: {characterType}, {(int)characterType}, 레벨: {character_Level}");
         }
 
         switch (character_Level)

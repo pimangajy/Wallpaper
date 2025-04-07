@@ -17,7 +17,5 @@ MonoBehaviour:
     \uC74C\uC2DD\uC774\uB2E4.\n 1\uC2DC\uAC04\uCE58 \uACBD\uD5D8\uCE58\uB97C \uC5BB\uB294\uB2E4."
   itemIcon: {fileID: -5741337257242877037, guid: 825f24a1568289b49af1c311e4f2d486, type: 3}
   itemHideIcon: {fileID: -2098468077852555452, guid: b668e2f006f393d419b3b81bdf13d852, type: 3}
-  expIncrease: 1
-  interestIncrease: 0
-  typeChanged: 0
+  itemType: 0
   value: 3600

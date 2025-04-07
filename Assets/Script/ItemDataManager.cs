@@ -66,16 +66,18 @@ public class ItemDataManager : MonoBehaviour
         SaveData();
     }
 
-    public void UseItem(ItemData item)
+    public bool UseItem(ItemData item)
     {
         if (itemCounts.TryGetValue(item.itemName, out int count) && count > 0)
         {
             itemCounts[item.itemName]--;
             SaveData();
+            return true;
         }
         else
         {
             Debug.Log($"{item.itemName} 아이템이 부족합니다.");
+            return false;
         }
     }
 
@@ -103,14 +105,32 @@ public class ItemDataManager : MonoBehaviour
                 string json = File.ReadAllText(filePath);
                 var saveData = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(json);
 
-                discoveredItems = saveData["discoveredItems"].ToDictionary(kv => kv.Key, kv => (bool)kv.Value);
-                itemCounts = saveData["itemCounts"].ToDictionary(kv => kv.Key, kv => Convert.ToInt32(kv.Value));
+                // 키 존재 여부 체크
+                if (saveData.ContainsKey("discoveredItems"))
+                    discoveredItems = saveData["discoveredItems"].ToDictionary(kv => kv.Key, kv => Convert.ToBoolean(kv.Value));
+                else
+                    discoveredItems = new Dictionary<string, bool>();
+
+                if (saveData.ContainsKey("itemCounts"))
+                    itemCounts = saveData["itemCounts"].ToDictionary(kv => kv.Key, kv => Convert.ToInt32(kv.Value));
+                else
+                    itemCounts = new Dictionary<string, int>();
+
                 Debug.Log("데이터 로드 완료!");
             }
             catch (Exception e)
             {
                 Debug.LogError("데이터 로드 오류: " + e.Message);
+                discoveredItems = new Dictionary<string, bool>();
+                itemCounts = new Dictionary<string, int>();
             }
+        }
+        else
+        {
+            // 최초 실행 시 기본값 설정
+            discoveredItems = new Dictionary<string, bool>();
+            itemCounts = new Dictionary<string, int>();
+            Debug.Log("저장 파일이 없어 초기화됨.");
         }
     }
 }

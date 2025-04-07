@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Yuni_4_2 1_0: 7126201041874224845
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

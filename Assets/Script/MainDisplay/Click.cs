@@ -8,7 +8,6 @@ using System;
 
 public class Click : MonoBehaviour
 {
-    public Event_Anime event_Anime;
     public Rect clickableRect = new Rect(0.25f, 0.25f, 0.5f, 0.5f);
     public UnityEngine.Color gizmoColor = UnityEngine.Color.red;
     public Camera mainCamera;
@@ -77,7 +76,6 @@ public class Click : MonoBehaviour
                 if (distance > dragThreshold)
                 {
                     isDragging = true;
-                    event_Anime.animator.SetBool("Drag", true);
                     
                     foreach(Idle_Anime idle in idle_Animes)
                     {
@@ -102,8 +100,6 @@ public class Click : MonoBehaviour
             if (isDragging)
             {
                 isDragging = false;
-                //idle_Anime.DragEndEvent(viewportPoint);
-                event_Anime.animator.SetBool("Drag", false);
 
                 foreach (Idle_Anime idle in idle_Animes)
                 {
@@ -122,8 +118,6 @@ public class Click : MonoBehaviour
             }
             else if (Time.time - touchStartTime < TOUCH_TIME_THRESHOLD)
             {
-                event_Anime.TouchEvent(viewportPoint);
-
                 imoticon_4.Imoticon_Off();
 
                 if(touchCount > 3)
@@ -192,38 +186,11 @@ public class Click : MonoBehaviour
                     else if (clickableRect.Contains(viewportPoint) &&
                            Time.time - touchStartTime < TOUCH_TIME_THRESHOLD)
                     {
-                        event_Anime.TouchEvent(viewportPoint);
                         Debug.Log("터치 이벤트 실행!");
                     }
                     break;
             }
         }
-    }
-
-    private void StartDrag(Vector3 viewportPoint)
-    {
-        isDragging = true;
-        lastDragPosition = viewportPoint;
-        event_Anime.TouchEvent(viewportPoint); // 시작 이벤트 호출
-        Debug.Log("드래그 시작!");
-    }
-
-    private void UpdateDrag(Vector3 viewportPoint)
-    {
-        if (isDragging)
-        {
-            Vector3 delta = viewportPoint - lastDragPosition;
-            //idle_Anime.DragEvent(viewportPoint, delta); // Test 클래스에 새로운 메서드 필요
-            lastDragPosition = viewportPoint;
-            Debug.Log($"드래그 중: Delta = {delta}");
-        }
-    }
-
-    private void EndDrag()
-    {
-        isDragging = false;
-        //idle_Anime.DragEndEvent(lastDragPosition); // Test 클래스에 새로운 메서드 필요
-        Debug.Log("드래그 종료!");
     }
 
     // 기존의 OnDrawGizmos 메서드는 그대로 유지

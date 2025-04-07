@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3539f3719948e9d48bf66e85b4de2cbe, type: 3}
   m_Name: YuniNomal_3
   m_EditorClassIdentifier: 
+  Charator: {fileID: 4009795036043428931, guid: 462685aba52fee746aa7cb21617b5529, type: 3}
+  CharatorName: 
   age: 4
   birthday: "5\uC6D4 21\uC77C"
   mbti: ISTP
   explanation: "\uAE30\uBCF8 \uC720\uB2C8\uB2E4\n"
-  icon_Image: {fileID: 21300000, guid: d0c05b9125ed56349a5385e1a77547b7, type: 3}
-  main_Image: {fileID: 21300000, guid: 1a58749f555f75e48baa41893215b26e, type: 3}
+  main_Image: {fileID: 7126201041874224845, guid: 166efa69790e0064fac62c949ee843c6, type: 3}
+  level: 3
+  type: 1

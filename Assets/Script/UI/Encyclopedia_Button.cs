@@ -17,13 +17,18 @@ public class Encyclopedia_Button : MonoBehaviour
 
     public void Open()
     {
-        panel.character_name.text = charatorData.name;
+        panel.character_name.text = charatorData.CharatorName;
         panel.age.text = charatorData.age;
         panel.birthday.text = charatorData.birthday;
         panel.mbti.text = charatorData.mbti;
         panel.explanation.text = charatorData.explanation;
         // panel.count.text = count.ToString();
         panel.main_image.sprite = charatorData.main_Image;
+
+    }
+
+    public void CharatorSet()
+    {
 
     }
 }
