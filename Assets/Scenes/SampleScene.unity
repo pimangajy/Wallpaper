@@ -663,6 +663,7 @@ MonoBehaviour:
   - {fileID: 862584989}
   - {fileID: 872743508}
   - {fileID: 1773238908}
+  idle_Anime: {fileID: 0}
   imoticon_1: {fileID: 1569430554}
   imoticon_2: {fileID: 1560277328}
   imoticon_3: {fileID: 1429253684}
@@ -1304,6 +1305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharatorList: {fileID: 1970692138}
+  click: {fileID: 519420033}
 --- !u!114 &1970692138
 MonoBehaviour:
   m_ObjectHideFlags: 0

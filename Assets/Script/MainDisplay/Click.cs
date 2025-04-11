@@ -23,6 +23,8 @@ public class Click : MonoBehaviour
     [SerializeField]
     private List<Idle_Anime> idle_Animes = new List<Idle_Anime>();
 
+    public Idle_Anime idle_Anime;
+
     public Imoticon_On_Off imoticon_1;
     public Imoticon_On_Off imoticon_2;
     public Imoticon_On_Off imoticon_3;
@@ -55,6 +57,11 @@ public class Click : MonoBehaviour
 #endif
     }
 
+    public void CharaotrIn(Idle_Anime obj)
+    {
+        idle_Anime = obj;
+    }
+
     private void HandleMouseInput()
     {
         Vector3 viewportPoint = mainCamera.ScreenToViewportPoint(Input.mousePosition);
@@ -76,8 +83,10 @@ public class Click : MonoBehaviour
                 if (distance > dragThreshold)
                 {
                     isDragging = true;
-                    
-                    foreach(Idle_Anime idle in idle_Animes)
+
+                    idle_Anime.HeadIdle_On();
+
+                    foreach (Idle_Anime idle in idle_Animes)
                     {
                         idle.HeadIdle_On();
                     }
@@ -107,6 +116,7 @@ public class Click : MonoBehaviour
                 }
 
                 imoticon_4.Imoticon_Off();
+                idle_Anime.HeadIdle_Off();
 
                 Debug.Log("드래그 종료!");
 

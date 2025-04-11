@@ -5,8 +5,14 @@ using UnityEngine;
 public class CreateCharator : MonoBehaviour
 {
     public CharatorList CharatorList;
+    public Click click;
 
     void Start()
+    {
+        CharaterSpawn();
+    }
+
+    public void CharaterSpawn()
     {
         int savedLevel = PlayerPrefs.GetInt("level");
         int savedType = PlayerPrefs.GetInt("Character_type");
@@ -17,8 +23,14 @@ public class CreateCharator : MonoBehaviour
 
         if (charData != null)
         {
-            Instantiate(charData.Charator, transform.position, Quaternion.identity);
+            GameObject spawnchar = Instantiate(charData.Charator, transform.position, Quaternion.identity);
             Debug.Log($"캐릭터 생성 완료: {charData.CharatorName}");
+
+            if (click != null && spawnchar.GetComponent<Idle_Anime>())
+            {
+                click.CharaotrIn(spawnchar.GetComponent<Idle_Anime>());
+            }
+            else Debug.Log("Click 스크립트 혹은 Idle_Anime가 없습니다");
         }
         else
         {

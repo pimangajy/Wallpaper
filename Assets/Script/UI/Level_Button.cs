@@ -43,10 +43,11 @@ public class Level_Button : MonoBehaviour
 
         if (character_Level > 3) // 3레벨 초과 시 초기화
         {
+            characterType = Charater_type.Default;
             character_Level = 0;
+            PlayerPrefs.SetInt("Character_type", (int)characterType);
             PlayerPrefs.SetInt("level", 0);
             PlayerPrefs.Save();
-            characterType = Charater_type.Default;
             Debug.Log("최대 레벨 초과! 기본 타입으로 초기화.");
             Item_Plus();
         }
@@ -151,7 +152,6 @@ public class Level_Button : MonoBehaviour
         {
             itemHandler.Item_Plus();
 
-            Debug.Log(itemHandler.itemData.itemName);
             Debug.Log((ran+1) + " 번쨰 아이템 흭득");
         }
     }

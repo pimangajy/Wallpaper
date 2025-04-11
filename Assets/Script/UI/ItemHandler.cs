@@ -54,7 +54,6 @@ public class ItemHandler : MonoBehaviour
     {
         ItemDataManager.Instance.AddItem(itemData, 1);
         panel.count.text = ItemDataManager.Instance.GetItemCount(itemData).ToString();
-        Debug.Log(itemData.itemName);
     }
 
     public void Item_Use()
