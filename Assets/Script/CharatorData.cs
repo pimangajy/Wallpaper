@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ChataterType
+{
+    Default,
+    yuniNomal
+}
+
 [CreateAssetMenu(fileName = "CharatorData", menuName = "Scriptable Objects/Charator Data")]
 public class CharatorData : ScriptableObject
 {
@@ -13,12 +19,9 @@ public class CharatorData : ScriptableObject
     [TextArea(5, 10)]
     public string explanation;
     public Sprite main_Image;
+    public Sprite hide_Sprite;
 
     public int level;
-    public enum ChatatorType
-    {
-        Default,
-        yuniNomal
-    }
-    public ChatatorType type;
+
+    public ChataterType type;
 }

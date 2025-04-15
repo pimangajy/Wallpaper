@@ -12,12 +12,16 @@ public class UI_Event : MonoBehaviour
     public void Start()
     {
         ItemSlotOpen();
+        EncyclopediaSlotOpen();
     }
     public void ItemSlotOpen()
     {
         itemSlotOpen?.Invoke(this, EventArgs.Empty);
     }
 
-    public void EncyclopediaSlotOpen() => encyclopediaSlotOpen?.Invoke(this, EventArgs.Empty);
+    public void EncyclopediaSlotOpen()
+    {
+        encyclopediaSlotOpen?.Invoke(this, EventArgs.Empty);
+    }
 
 }

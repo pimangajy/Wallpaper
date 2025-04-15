@@ -17,7 +17,7 @@ public class CreateCharator : MonoBehaviour
         int savedLevel = PlayerPrefs.GetInt("level");
         int savedType = PlayerPrefs.GetInt("Character_type");
 
-        CharatorData.ChatatorType type = (CharatorData.ChatatorType)savedType;
+        ChataterType type = (ChataterType)savedType;
 
         CharatorData charData = CharatorList.GetCharatorData(savedLevel, type);
 

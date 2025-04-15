@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
     }
     private void OnApplicationQuit()
     {
-
+        SaveData();
     }
 
     public void OpenUI(GameObject uiObject)
@@ -89,7 +89,6 @@ public class UIManager : MonoBehaviour
             var saveData = new { slideValue };
             string json = JsonConvert.SerializeObject(saveData, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText(filePath, json);
-            Debug.Log("경험치 데이터 저장 완료: " + filePath);
         }
         catch (Exception e)
         {
@@ -112,7 +111,6 @@ public class UIManager : MonoBehaviour
                 else
                     slideValue = new Dictionary<string, float>();
 
-                Debug.Log("데이터 로드 완료!");
             }
             catch (Exception e)
             {

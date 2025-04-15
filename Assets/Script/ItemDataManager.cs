@@ -42,7 +42,6 @@ public class ItemDataManager : MonoBehaviour
         if (!discoveredItems.ContainsKey(item.itemName))
         {
             discoveredItems[item.itemName] = true;
-            Debug.Log($"{item.itemName} 습득! 도감에 등록되었습니다.");
         }else
         {
             IsItemDiscovered(item);
@@ -88,7 +87,6 @@ public class ItemDataManager : MonoBehaviour
             var saveData = new { discoveredItems, itemCounts };
             string json = JsonConvert.SerializeObject(saveData, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText(filePath, json);
-            Debug.Log("데이터 저장 완료: " + filePath);
         }
         catch (Exception e)
         {
@@ -116,7 +114,6 @@ public class ItemDataManager : MonoBehaviour
                 else
                     itemCounts = new Dictionary<string, int>();
 
-                Debug.Log("데이터 로드 완료!");
             }
             catch (Exception e)
             {

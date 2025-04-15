@@ -15,16 +15,11 @@ public class Level_Button : MonoBehaviour
     public List<ItemHandler> itemhandlers = new List<ItemHandler>();
 
     public Gauge gauge;
-    public enum Charater_type 
-    {
-        Default,
-        yuniNomal
-    }
 
     [SerializeField]
     private int character_Level = 0;
 
-    public Charater_type characterType = Charater_type.Default; // 초기 타입
+    public ChataterType characterType  = ChataterType.Default; // 초기 타입
 
     private void Start()
     {
@@ -43,7 +38,7 @@ public class Level_Button : MonoBehaviour
 
         if (character_Level > 3) // 3레벨 초과 시 초기화
         {
-            characterType = Charater_type.Default;
+            characterType = ChataterType.Default;
             character_Level = 0;
             PlayerPrefs.SetInt("Character_type", (int)characterType);
             PlayerPrefs.SetInt("level", 0);
@@ -51,7 +46,7 @@ public class Level_Button : MonoBehaviour
             Debug.Log("최대 레벨 초과! 기본 타입으로 초기화.");
             Item_Plus();
         }
-        else if (character_Level == 1 && characterType == Charater_type.Default)
+        else if (character_Level == 1 && characterType == ChataterType.Default)
         {
             characterType = GetRandomCharacterType(); // 1레벨이면 랜덤 타입 할당
             PlayerPrefs.SetInt("Character_type", (int)characterType);
@@ -66,6 +61,8 @@ public class Level_Button : MonoBehaviour
             PlayerPrefs.Save();
             Debug.Log($"레벨업!  현재 타입: {characterType}, {(int)characterType}, 레벨: {character_Level}");
         }
+
+        CharaterDataManager.Instance.AddCharater(CharacterAssetManager.Instance.GetCharatorData(character_Level, characterType));
 
         switch (character_Level)
         {
@@ -89,9 +86,9 @@ public class Level_Button : MonoBehaviour
                 break;
         }
     }
-    private Charater_type GetRandomCharacterType()
+    private ChataterType GetRandomCharacterType()
     {
-        Charater_type[] types = { Charater_type.yuniNomal};
+        ChataterType[] types = { ChataterType.yuniNomal};
         return types[UnityEngine.Random.Range(0, types.Length)];
     }
     public void ButtonClick()
@@ -129,9 +126,6 @@ public class Level_Button : MonoBehaviour
         {
             Interest_Gauge.value = 0;
         }
-
-        Debug.Log($"현재 레벨: {character_Level}, 애정도 상태: {interest}");
-        Debug.Log("경험치 최대량 : " +  exp_Gauge.maxValue);
     }
 
     public void Item_Plus()

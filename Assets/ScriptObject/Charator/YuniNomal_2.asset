@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: YuniNomal_2
   m_EditorClassIdentifier: 
   Charator: {fileID: 2853336341341771639, guid: 98835887dcfdded4fbfef60a2d288876, type: 3}
-  CharatorName: 
+  CharatorName: "\uC720\uB2C8(\uCCAD\uC18C\uB144\uAE30)"
   age: 4
   birthday: "5\uC6D4 21\uC77C"
   mbti: ISTP
   explanation: "\uCCAD\uC18C\uB144\uAE30 \uC720\uB2C8\uB2E4"
   main_Image: {fileID: -2901250999234906117, guid: f03fb1d97de9b0a4496010b759ce7b1f, type: 3}
+  hide_Sprite: {fileID: 1409830513793316728, guid: 6c7c45eea2cd882418e3d387fdc713c5, type: 3}
   level: 2
   type: 1
